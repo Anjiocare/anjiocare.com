@@ -38,6 +38,29 @@ export default function AppointmentPage() {
 
       if (error) throw error;
 
+      try {
+        const smsResponse = await fetch(
+          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-appointment-sms`,
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              patientName: formData.patientName,
+              phone: formData.phone,
+            }),
+          }
+        );
+
+        if (!smsResponse.ok) {
+          console.warn('SMS notification failed:', await smsResponse.text());
+        }
+      } catch (smsError) {
+        console.warn('Could not trigger SMS notification:', smsError);
+      }
+
       setSubmitStatus('success');
       setFormData({
         patientName: '',
