@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Heart } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +28,13 @@ export default function Navigation() {
       <nav className="bg-white shadow-md sticky top-8 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center gap-3">
-              <Heart className="w-10 h-10 text-red-600" />
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Anjio Care</h1>
-                <p className="text-xs text-gray-600">Heart & Vascular Hospital</p>
-              </div>
-            </div>
+            <a href="#home" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+              <img
+                src="/anjio-care-logo.png"
+                alt="Anjio Care Logo"
+                className="h-16 w-auto"
+              />
+            </a>
 
             <div className="hidden md:flex items-center space-x-6">
               {navLinks.map((link) => (
